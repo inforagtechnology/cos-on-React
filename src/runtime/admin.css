@@ -1011,3 +1011,232 @@
     padding: 120px 20px 48px;
   }
 }
+
+.admin-login,
+.admin-setup,
+.admin-loading,
+.admin-dashboard {
+  color-scheme: dark;
+  color: #f1f5f9;
+  background-color: #050510;
+}
+
+.admin-login,
+.admin-setup {
+  background:
+    radial-gradient(ellipse at 12% 8%, rgba(99, 102, 241, 0.18), transparent 38%),
+    radial-gradient(ellipse at 88% 92%, rgba(249, 115, 22, 0.1), transparent 34%),
+    #050510;
+}
+
+.admin-login__card,
+.admin-setup__card {
+  border-color: rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  background: rgba(12, 14, 31, 0.9);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+}
+
+.admin-login__card h1,
+.admin-setup__card h1,
+.admin-page-heading h1 {
+  color: #f8fafc;
+}
+
+.admin-brand {
+  color: #f8fafc;
+}
+
+.admin-brand__logo {
+  display: block;
+  width: 52px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.admin-brand small {
+  color: #aab6c8;
+}
+
+.admin-brand__eyebrow,
+.admin-page-heading .admin-brand__eyebrow,
+.admin-section-heading .admin-brand__eyebrow {
+  color: #fbbf24;
+}
+
+.admin-login__intro,
+.admin-setup__card > p:not(.admin-brand__eyebrow) {
+  color: #aab6c8;
+}
+
+.admin-field {
+  color: #d7deeb;
+}
+
+.admin-field input,
+.admin-field textarea,
+.admin-field select {
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #f1f5f9;
+  background: #080b16;
+}
+
+.admin-field input::placeholder,
+.admin-field textarea::placeholder {
+  color: #77849a;
+}
+
+.admin-field input:focus,
+.admin-field textarea:focus,
+.admin-field select:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.16);
+}
+
+.admin-field select option {
+  color: #f1f5f9;
+  background: #080b16;
+}
+
+.admin-field small,
+.admin-field__hint {
+  color: #9aa8bc;
+}
+
+.admin-button--primary {
+  color: #17120a;
+  background: linear-gradient(135deg, #fcd34d, #f97316);
+  box-shadow: 0 8px 22px rgba(249, 115, 22, 0.2);
+}
+
+.admin-button--primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #fde68a, #fb923c);
+}
+
+.admin-button--secondary {
+  border-color: rgba(255, 255, 255, 0.14);
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.admin-button--secondary:hover:not(:disabled) {
+  border-color: rgba(251, 191, 36, 0.45);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.admin-button--danger {
+  border-color: rgba(248, 113, 113, 0.25);
+  color: #fca5a5;
+  background: rgba(127, 29, 29, 0.14);
+}
+
+.admin-login__back,
+.admin-setup__card > a:last-child {
+  color: #aab6c8;
+}
+
+.admin-login__back:hover,
+.admin-setup__card > a:last-child:hover {
+  color: #fbbf24;
+}
+
+.admin-loading {
+  color: #cbd5e1;
+}
+
+.admin-dashboard {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(49, 46, 129, 0.18), transparent 46%),
+    #050510;
+}
+
+.admin-topbar {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  background: rgba(5, 5, 16, 0.9);
+}
+
+.admin-topbar__actions > span,
+.admin-page-heading p:not(.admin-brand__eyebrow) {
+  color: #aab6c8;
+}
+
+.admin-page-heading h1 {
+  background: linear-gradient(110deg, #f97316 10%, #fbbf24 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.admin-count {
+  border-color: rgba(251, 191, 36, 0.25);
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.08);
+}
+
+.admin-editor,
+.admin-posts {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(12, 14, 31, 0.82);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.24);
+}
+
+.admin-section-heading h2 {
+  color: #f8fafc;
+}
+
+.admin-alert--error {
+  border-color: rgba(248, 113, 113, 0.28);
+  color: #fecaca;
+  background: rgba(127, 29, 29, 0.2);
+}
+
+.admin-alert--success {
+  border-color: rgba(74, 222, 128, 0.24);
+  color: #bbf7d0;
+  background: rgba(20, 83, 45, 0.24);
+}
+
+.admin-empty {
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #aab6c8;
+}
+
+.admin-post-row {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.admin-post-row__title h3 {
+  color: #e2e8f0;
+}
+
+.admin-post-row__details > p {
+  color: #9aa8bc;
+}
+
+.admin-post-row__details > a {
+  color: #38bdf8;
+}
+
+.admin-post-row__details > a:hover {
+  color: #7dd3fc;
+}
+
+.admin-post-row__placeholder {
+  background: linear-gradient(135deg, #15359e, #f97316);
+}
+
+.admin-status--published {
+  color: #bbf7d0;
+  background: rgba(34, 197, 94, 0.16);
+}
+
+.admin-status--draft {
+  color: #fde68a;
+  background: rgba(245, 158, 11, 0.16);
+}
+
+@media (max-width: 540px) {
+  .admin-brand__logo {
+    width: 44px;
+    height: 36px;
+  }
+}

@@ -351,6 +351,13 @@ export default function AdminPanel() {
     return (
       <main className="admin-setup">
         <div className="admin-setup__card">
+          <Link className="admin-brand" to="/">
+            <img className="admin-brand__logo" src="/img/cos-white-logo.webp" alt="Code Of School" />
+            <span>
+              <strong>Code Of School</strong>
+              <small>Content administration</small>
+            </span>
+          </Link>
           <p className="admin-brand__eyebrow">Code Of School</p>
           <h1>Connect Supabase</h1>
           <p>Set <code>VITE_SUPABASE_URL</code> and <code>VITE_SUPABASE_ANON_KEY</code> in your environment to enable the blog admin.</p>
@@ -369,7 +376,7 @@ export default function AdminPanel() {
       <main className="admin-login">
         <form className="admin-login__card" onSubmit={handleSignIn}>
           <Link className="admin-brand" to="/">
-            <span className="admin-brand__mark">C</span>
+            <img className="admin-brand__logo" src="/img/cos-white-logo.webp" alt="Code Of School" />
             <span>
               <strong>Code Of School</strong>
               <small>Content administration</small>
@@ -400,6 +407,13 @@ export default function AdminPanel() {
     return (
       <main className="admin-login">
         <section className="admin-login__card">
+          <Link className="admin-brand" to="/">
+            <img className="admin-brand__logo" src="/img/cos-white-logo.webp" alt="Code Of School" />
+            <span>
+              <strong>Code Of School</strong>
+              <small>Content administration</small>
+            </span>
+          </Link>
           <p className="admin-brand__eyebrow">ADMIN ACCESS</p>
           <h1>{adminStatus === "error" ? "Could not verify access" : "Not an admin account"}</h1>
           <p className="admin-login__intro">
@@ -419,7 +433,7 @@ export default function AdminPanel() {
     <main className="admin-dashboard">
       <header className="admin-topbar">
         <Link className="admin-brand" to="/">
-          <span className="admin-brand__mark">C</span>
+          <img className="admin-brand__logo" src="/img/cos-white-logo.webp" alt="Code Of School" />
           <span>
             <strong>Code Of School</strong>
             <small>Blog admin</small>
