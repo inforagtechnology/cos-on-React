@@ -20,6 +20,54 @@ const CATEGORY_PATHS = {
   "full-stack": "/blogs/Fullstack-Developer/Full-stack-blog",
 };
 
+const LEGACY_BLOG_PAGES = import.meta.glob("../pages/blogs/**/*.jsx");
+const NON_ARTICLE_PAGES = new Set([
+  "../pages/blogs/demo.jsx",
+  "../pages/blogs/Digital-Marketing/digital-marketing-blog.jsx",
+  "../pages/blogs/Digital-Marketing/header.jsx",
+  "../pages/blogs/Fullstack-Developer/Full-stack-blog.jsx",
+  "../pages/blogs/newhtml.jsx",
+]);
+const TITLE_ACRONYMS = new Set([
+  "ai", "api", "bba", "bca", "css", "ecommerce", "git", "github", "hrm",
+  "html", "js", "mern", "mongodb", "seo", "ppc", "vs",
+]);
+
+function titleFromSlug(slug) {
+  return slug
+    .split(/[-.]+/)
+    .filter(Boolean)
+    .map((word) => {
+      if (word.toLowerCase() === "fullstack") return "Full Stack";
+      if (word.toLowerCase() === "nodejs") return "Node.js";
+      if (TITLE_ACRONYMS.has(word.toLowerCase())) {
+        return word.toLowerCase() === "ecommerce" ? "E-Commerce" : word.toUpperCase();
+      }
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(" ");
+}
+
+const LEGACY_BLOG_POSTS = Object.keys(LEGACY_BLOG_PAGES)
+  .filter((modulePath) => !NON_ARTICLE_PAGES.has(modulePath))
+  .map((modulePath) => {
+    const legacyPath = modulePath.replace("../pages", "").replace(/\.jsx$/, "");
+    const category = modulePath.includes("/Digital-Marketing/")
+      ? "digital-marketing"
+      : "full-stack";
+    const slug = legacyPath.slice(legacyPath.lastIndexOf("/") + 1);
+
+    return {
+      slug,
+      title: titleFromSlug(slug),
+      category,
+      legacyPath,
+      cover_image_url: null,
+      excerpt: "",
+    };
+  })
+  .sort((first, second) => first.title.localeCompare(second.title));
+
 function BlogLayout({ title, description, canonical, children }) {
   return (
     <PageFrame
@@ -169,8 +217,15 @@ export function PublishedBlogIndex() {
   }, []);
 
   const visiblePosts = category === "all"
-    ? posts
-    : posts.filter((post) => post.category === category);
+    ? [...posts, ...LEGACY_BLOG_POSTS.filter((legacyPost) =>
+        !posts.some((post) => post.slug === legacyPost.slug)
+      )]
+    : [
+        ...posts.filter((post) => post.category === category),
+        ...LEGACY_BLOG_POSTS.filter((post) =>
+          post.category === category && !posts.some((publishedPost) => publishedPost.slug === post.slug)
+        ),
+      ];
 
   const canonical = `${window.location.origin}/blogs`;
   return (
@@ -202,27 +257,21 @@ export function PublishedBlogIndex() {
           ))}
         </div>
 
-        {status === "loading" && <p className="published-blog-index__message">Loading articles…</p>}
-        {status === "unavailable" && (
-          <p className="published-blog-index__message">Published articles are temporarily unavailable.</p>
-        )}
+        {status === "loading" && <p className="published-blog-index__message">Loading new articles…</p>}
         {status === "error" && (
           <p className="published-blog-index__message" role="status">
-            We couldn’t load the published articles. Please try again later.
+            New articles couldn’t be loaded. Existing articles are still available below.
           </p>
         )}
-        {status === "ready" && visiblePosts.length === 0 && (
-          <p className="published-blog-index__message">No published articles in this category yet.</p>
-        )}
-        {status === "ready" && visiblePosts.length > 0 && (
+        {visiblePosts.length > 0 && (
           <>
-            <p className="results-counter">Showing {visiblePosts.length} published articles</p>
+            <p className="results-counter">Showing {visiblePosts.length} articles</p>
             <div className="blog-grid">
               {visiblePosts.map((post) => (
                 <Link
                   className="blog-card blog-card-link published-blog-card"
-                  key={post.id}
-                  to={`/blogs/posts/${post.slug}`}
+                  key={post.id || `${post.category}-${post.slug}`}
+                  to={post.legacyPath || `/blogs/posts/${post.slug}`}
                 >
                   {post.cover_image_url ? (
                     <img src={post.cover_image_url} alt="" className="card-thumbnail" />

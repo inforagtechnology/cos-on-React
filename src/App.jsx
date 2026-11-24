@@ -1,6 +1,7 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Navigate, Routes, Route, useLocation } from "react-router-dom";
 import routes from "./routes.generated.js";
+import ComponentsPreview from "./pages/components-preview.jsx";
 
 const AdminPanel = lazy(() => import("./runtime/AdminPanel.jsx"));
 const PublishedBlogIndex = lazy(() =>
@@ -15,6 +16,48 @@ const PublishedBlogPage = lazy(() =>
  */
 export default function App() {
   const location = useLocation();
+
+  useEffect(() => {
+    function cleanInternalLinks(root) {
+      const anchors = [];
+      if (root instanceof HTMLAnchorElement) anchors.push(root);
+      if (root.querySelectorAll) anchors.push(...root.querySelectorAll("a[href]"));
+
+      anchors.forEach((anchor) => {
+        const href = anchor.getAttribute("href");
+        if (!href) return;
+
+        const url = new URL(href, window.location.href);
+        if (url.origin !== window.location.origin || !/\.html$/i.test(url.pathname)) return;
+
+        url.pathname = url.pathname === "/index.html"
+          ? "/"
+          : url.pathname.replace(/\.html$/i, "");
+        anchor.setAttribute("href", `${url.pathname}${url.search}${url.hash}`);
+      });
+    }
+
+    cleanInternalLinks(document.body);
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === "attributes") {
+          cleanInternalLinks(mutation.target);
+        } else {
+          mutation.addedNodes.forEach(cleanInternalLinks);
+        }
+      });
+    });
+
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["href"],
+      childList: true,
+      subtree: true,
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   if (location.pathname.endsWith(".html")) {
     const pathname = location.pathname === "/index.html"
       ? "/"
@@ -36,6 +79,7 @@ export default function App() {
         <Route path="/admin" element={<AdminPanel />} />
         <Route path="/blogs" element={<PublishedBlogIndex />} />
         <Route path="/blogs/posts/:slug" element={<PublishedBlogPage />} />
+        <Route path="/components-preview" element={<ComponentsPreview />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
