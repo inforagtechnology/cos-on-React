@@ -34,6 +34,8 @@ export default [
   { path: "/blogs/Digital-Marketing/digital-marketing-analytics", Component: lazy(() => import("./pages/blogs/Digital-Marketing/digital-marketing-analytics.jsx")) },
   { path: "/blogs/Digital-Marketing/digital-marketing-blog.html", Component: lazy(() => import("./pages/blogs/Digital-Marketing/digital-marketing-blog.jsx")) },
   { path: "/blogs/Digital-Marketing/digital-marketing-blog", Component: lazy(() => import("./pages/blogs/Digital-Marketing/digital-marketing-blog.jsx")) },
+  { path: "/blogs/Digital-Marketing/digital-marketing-strategy-2025.html", Component: lazy(() => import("./pages/blogs/Digital-Marketing/digital-marketing-strategy-2025.jsx")) },
+  { path: "/blogs/Digital-Marketing/digital-marketing-strategy-2025", Component: lazy(() => import("./pages/blogs/Digital-Marketing/digital-marketing-strategy-2025.jsx")) },
   { path: "/blogs/Digital-Marketing/digital-marketing-career-bba.html", Component: lazy(() => import("./pages/blogs/Digital-Marketing/digital-marketing-career-bba.jsx")) },
   { path: "/blogs/Digital-Marketing/digital-marketing-career-bba", Component: lazy(() => import("./pages/blogs/Digital-Marketing/digital-marketing-career-bba.jsx")) },
   { path: "/blogs/Digital-Marketing/digital-marketing-career-commerce.html", Component: lazy(() => import("./pages/blogs/Digital-Marketing/digital-marketing-career-commerce.jsx")) },
