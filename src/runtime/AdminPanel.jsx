@@ -404,6 +404,10 @@ export default function AdminPanel() {
   }
 
   if (adminStatus !== "allowed") {
+    const allowlistSql = `insert into public.blog_admins (user_id)
+select id from auth.users where email = '${(session.user.email || "").replace(/'/g, "''")}'
+on conflict (user_id) do nothing;`;
+
     return (
       <main className="admin-login">
         <section className="admin-login__card">
@@ -421,6 +425,16 @@ export default function AdminPanel() {
               ? error
               : "This signed-in account is not authorized to manage blog articles."}
           </p>
+          {adminStatus === "denied" && (
+            <div className="admin-access-help">
+              <p>
+                Signed in as <strong>{session.user.email}</strong>. To grant this account access,
+                run this SQL in the Supabase SQL Editor for the project configured on this site:
+              </p>
+              <pre><code>{allowlistSql}</code></pre>
+              <p>Then sign out and sign in again.</p>
+            </div>
+          )}
           <button className="admin-button admin-button--secondary" onClick={handleSignOut} disabled={busy}>
             Sign out
           </button>

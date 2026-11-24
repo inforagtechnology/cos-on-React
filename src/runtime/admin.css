@@ -81,6 +81,36 @@
   line-height: 1.65;
 }
 
+.admin-access-help {
+  margin: -6px 0 22px;
+  color: #52617a;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.admin-access-help p {
+  margin: 0 0 12px;
+}
+
+.admin-access-help strong {
+  color: #17233c;
+  overflow-wrap: anywhere;
+}
+
+.admin-access-help pre {
+  overflow-x: auto;
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid #dce4ef;
+  border-radius: 9px;
+  color: #e5edf9;
+  background: #17233c;
+  font-size: 11px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 .admin-field {
   display: flex;
   flex-direction: column;
