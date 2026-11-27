@@ -7,3 +7,14 @@
 .blog-page-frame footer:not(.blog-page-shared-footer) {
   display: none;
 }
+
+@media (max-width: 960px) {
+  .blog-page-frame header .nav-pg,
+  .blog-page-frame header .nav-but {
+    display: none;
+  }
+
+  .blog-page-frame header .hamburger-menu {
+    display: block;
+  }
+}
