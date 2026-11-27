@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
+import Footer from "../components/layout/Footer.jsx";
 import { acquireStyles } from "./styles.js";
 import { runScripts } from "./scripts.js";
 
@@ -14,7 +15,8 @@ import { runScripts } from "./scripts.js";
 export default function PageFrame({ head, styles = [], scripts = [], children }) {
   // on the server (tools/verify.mjs, prerendering) there is no CSS to wait for, so the markup renders straight away
   const [ready, setReady] = useState(typeof window === "undefined");
-  const { hash } = useLocation();
+  const { hash, pathname } = useLocation();
+  const isBlogPage = pathname === "/blogs" || pathname.startsWith("/blogs/");
 
   useLayoutEffect(() => {
     let cancelled = false;
@@ -46,7 +48,12 @@ export default function PageFrame({ head, styles = [], scripts = [], children })
   return (
     <>
       {head}
-      {ready ? children : null}
+      {ready && isBlogPage ? (
+        <div className="blog-page-frame">
+          {children}
+          <Footer className="blog-page-shared-footer" />
+        </div>
+      ) : ready ? children : null}
       {ready && <BlogNavigationLinks />}
     </>
   );

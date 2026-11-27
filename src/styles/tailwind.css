@@ -1,1 +1,9 @@
 @tailwind utilities;
+
+.blog-page-frame {
+  display: contents;
+}
+
+.blog-page-frame footer:not(.blog-page-shared-footer) {
+  display: none;
+}

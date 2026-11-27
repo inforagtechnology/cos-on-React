@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import PageFrame from "./PageFrame.jsx";
-import { SiteFooter, SiteHeader } from "./SiteChrome.jsx";
+import { SiteHeader } from "./SiteChrome.jsx";
 import { isSupabaseConfigured, supabase } from "./supabase.js";
 import "./admin.css";
 
@@ -84,7 +84,6 @@ function BlogLayout({ title, description, canonical, children }) {
     >
       <SiteHeader />
       {children}
-      <SiteFooter />
     </PageFrame>
   );
 }

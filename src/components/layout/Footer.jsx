@@ -43,9 +43,9 @@ function SocialLink({ label, href, children }) {
   );
 }
 
-export default function Footer() {
+export default function Footer({ className = "" }) {
   return (
-    <footer className="tw-relative tw-overflow-hidden tw-border-t-2 tw-border-orange-500/60 tw-bg-[#070711] tw-text-white">
+    <footer className={`tw-relative tw-overflow-hidden tw-border-t-2 tw-border-orange-500/60 tw-bg-[#070711] tw-text-white ${className}`}>
       <div aria-hidden="true" className="tw-pointer-events-none tw-absolute -tw-left-32 -tw-top-32 tw-h-80 tw-w-80 tw-rounded-full tw-bg-violet-600/10 tw-blur-3xl" />
       <div className="tw-relative tw-mx-auto tw-grid tw-max-w-7xl tw-grid-cols-1 tw-gap-10 tw-px-5 tw-py-14 sm:tw-px-8 md:tw-grid-cols-2 lg:tw-grid-cols-[1.4fr_0.8fr_1.2fr_1.2fr]">
         <section>
