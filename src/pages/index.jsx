@@ -213,7 +213,7 @@ export default function Page() {
           </div>
         </section>
         {" "}
-        <a href="https://wa.me/919977723584?text=Hi%20I%20need%20help" className="whatsapp-float" id="whatsappButton" target="_blank">
+        <a href="https://wa.me/919977723584" className="whatsapp-float" id="whatsappButton" target="_blank">
           {" "}
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Chat" />
           {" "}
